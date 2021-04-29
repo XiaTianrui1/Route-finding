@@ -65,3 +65,48 @@ void read_file()
 
 }
 
+
+
+
+
+
+int store_data()
+{
+	int a,m,n,p;
+	for(a=0; a<=Graph.vexnum; a++)
+	{
+		Graph.vexs[a] = Graph.node_id[a];	
+	}
+	for(m=0; m<Graph.vexnum; m++){
+		for(n=0; n<Graph.vexnum; n++){
+			Graph.arcs[m][n]=max;
+		}
+	}
+	for (p=0; p<Graph.arcnum; p++)
+	{
+		Graph.arcs[LocateVex(Graph.node1[p])][LocateVex(Graph.node2[p])] = Graph.length[p];
+		Graph.arcs[LocateVex(Graph.node2[p])][LocateVex(Graph.node1[p])] = Graph.length[p];
+	}
+	return 0;
+	
+}
+
+
+
+
+
+
+int LocateVex(int input_id)
+{
+	int b=0;
+	for(b=0; b<=Graph.arcnum; b++)
+	{
+		if(Graph.vexs[b]==input_id)
+		{
+			return b;
+		}
+	}
+	printf("Couldn't find such node.");
+	return -1;
+}
+
